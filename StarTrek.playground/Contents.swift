@@ -34,27 +34,32 @@ var humanOfficers: [String] = ["sisko", "kirk", "picard", "chakotay", "janeway",
 
 var femaleOfficers: [String] = ["kira", "dax", "tpol", "janeway", "troi", "seven"]
 
+let scores = [100, 90, 95]
+let result = scores.reduce(0){$0 + $1}
 /*:
 First, a set of warm-up problems for everyone
 */
 // Q0: How many human officers are there?
-
+let humanCount = humanOfficers.count
+// let countNames = names.reduce(0) {$1.count < 5 ? $0 + 1 : $0}
 
 
 
 // Q1: What percentage of humans are female?
-
-
-
+let femaleHumans = humanOfficers.filter{femaleOfficers.contains($0)}.count
+print(femaleHumans)
+let percent = Float(femaleHumans)/Float(humanCount)
 
 // Q2: How many first officers are human?
 
+let humanFirstOfficers = firstOfficers.keys.filter{humanOfficers.contains($0)}.count
+humanFirstOfficers
 
 
 
 // Q3: Get a list of females sorted by name
 
-
+let list = femaleOfficers.sorted()
 
 
 /*:
@@ -87,12 +92,13 @@ Group 1
 */
 // Q4: Create an array of officer objects who captain starships
 
-
+let allCaptains: [Officer] = captains.map{Officer(name: $0,ship: $1)}
+print(allCaptains.map{$0.name})
 
 
 // Q5: Alphabetize the previous list by the captain's name
-
-
+let allCaptainsAlpha: [Officer] = captains.map{Officer(name: $0,ship: $1)}.sorted(by: {$0 < $1})
+print(allCaptainsAlpha.map{$0.name})
 
 
 /*:
@@ -100,12 +106,16 @@ Group 2
 */
 // Q6: Create an array of officers serving as first officers who are also Vulcan
 
+let vulcansArray: [Officer] = firstOfficers.map{Officer(name: $0, ship: $1)}.filter{vulcanOfficers.contains($0.name)}
 
+print(vulcansArray.map{$0.name})
 
 
 
 // Q7: How many these Vulcan first officers have names shorter than 5 characters?
 
 
+let countOfVulcans = vulcansArray.filter{$0.name.count < 5}.count
 
+print(countOfVulcans)
 
